@@ -245,6 +245,15 @@ h1 {
 
 .menu-item:hover {
     background-color: var(--main-color);
+   
+}
+
+.menu-item:hover path {
+    fill: #ededed;
+}
+
+.menu-item:hover p {
+    color: #ededed;
 }
 
 .menu-img-box {
@@ -252,7 +261,11 @@ h1 {
     max-height: 120px;
     margin-bottom: 12px;
 
-     padding: 12px;
+    padding: 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .menu-name {

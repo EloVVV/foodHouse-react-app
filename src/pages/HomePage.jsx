@@ -7,10 +7,29 @@ import menu_french_fries from '../assets/icons/disable/french-fries.svg';
 import menu_pizza from '../assets/icons/disable/pizza.svg';
 import menu_discount from '../assets/icons/disable/discount.svg';
 
-import asrt_img1 from '../assets/images/item__image-1.png';
+
+import { useState } from 'react';
+import products from '../components/items/products';
+import { CATEGORIES } from '../data/categories';
+import { IconDiscont, IconFrenchFries, IconGreenSalad, IconHamburger, IconPizza, IconWater } from '../components/icons/icons';
+import menu from '../components/items/menu';
+import { filter } from '../utils/filter';
+
+
+
 
 
 const HomePage = () => {
+        
+    const [items, setItems] = useState(products);
+
+    const [menuItems, setMenuItems] = useState(menu);
+
+    const onClickFilterHandle = (category) => {
+        setItems(filter(products, category));
+    };
+
+
     return (
         <section>
             <div className="main-block">
@@ -42,268 +61,56 @@ const HomePage = () => {
                 <div className="assortment_container container">
                     <h1>Наше Меню</h1>
                     <div className="menu_collection">
-                        <div className="menu-item">
-                            <div className="menu-img-box">
-                                <img src={menu_salad} alt="" className="menu-img" />
-                            </div>
-                            <p className="menu-name">
-                                Салаты
-                            </p>
-                        </div>
-
-                        <div className="menu-item">
-                            <div className="menu-img-box">
-                                <img src={menu_water} alt="" className="menu-img" />
-                            </div>
-                            <p className="menu-name">
-                                Напитки
-                            </p>
-                        </div>
-
-                        <div className="menu-item">
-                            <div className="menu-img-box">
-                                <img src={menu_hamburger} alt="" className="menu-img" />
-                            </div>
-                            <p className="menu-name">
-                                Бургеры
-                            </p>
-                        </div>
-
-                        <div className="menu-item">
-                            <div className="menu-img-box">
-                                <img src={menu_french_fries} alt="" className="menu-img" />
-                            </div>
-                            <p className="menu-name">
-                                Закуски
-                            </p>
-                        </div>
-
-                        <div className="menu-item">
-                            <div className="menu-img-box">
-                                <img src={menu_pizza} alt="" className="menu-img" />
-                            </div>
-                            <p className="menu-name">
-                                Пицца
-                            </p>
-                        </div>
-
-                        <div className="menu-item">
-                            <div className="menu-img-box">
-                                <img src={menu_discount} alt="" className="menu-img" />
-                            </div>
-                            <p className="menu-name">
-                                Акции
-                            </p>
-                        </div>
+                        {
+                            menuItems.map((item) => {
+                                return (
+                                    <div key={item.id} onClick={() => onClickFilterHandle(item.category)} className="menu-item">
+                                        <div className="menu-img-box">
+                                            {/* <img src={menu_salad} alt="" className="menu-img" /> */}
+                                            {item.img}
+                                        </div>
+                                        <p className="menu-name">
+                                            {item.name}
+                                        </p>
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
                     <div className="assortment_collection">
-                        <div className="assortment-item">
-                            
-                            <div className="assortment-header">
-                                <p className='assortment-title'>
-                                    Салат "Греческий"
-                                </p>
-                                <p className="main-description">
-                                    300 грамм - 1 порция
-                                </p>
-                                <p className="other-description">
-                                    36 - белков, 11 - жиров, 55 - углеводов
-                                </p>
+                        {
+                            items.map((item) => {
+                                return (
+                                    <div key={item.id} className="assortment-item">
+                                
+                                        <div className="assortment-header">
+                                            <p className='assortment-title'>
+                                                {CATEGORIES[item.category]} "{item.name}"
+                                            </p>
+                                            <p className="main-description">
+                                                {item.weight} грамм - 1 порция
+                                            </p>
+                                            <p className="other-description">
+                                                {item.proteins} - белков, {item.fats} - жиров, {item.carbs} - углеводов
+                                            </p>
+            
+                                            <div className="assortment_action">
+                                                Добавить в корзину
+                                            </div>
+                                        </div>
+            
+                                    
+                                        
+                                        <div className="assortment-img-box">
+                                            <span className='dark-effect'></span>
+                                            <img src={item.img} alt="" className="assortment-img" />
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
 
-                                <div className="assortment_action">
-                                Добавить в корзину
-                                </div>
-                            </div>
-
-                           
-                            
-                            <div className="assortment-img-box">
-                                <span className='dark-effect'></span>
-                                <img src={asrt_img1} alt="" className="assortment-img" />
-                            </div>
-                        </div>
-
-                        <div className="assortment-item">
-                            
-                            <div className="assortment-header">
-                                <p className='assortment-title'>
-                                    Салат "Греческий"
-                                </p>
-                                <p className="main-description">
-                                    300 грамм - 1 порция
-                                </p>
-                                <p className="other-description">
-                                    36 - белков, 11 - жиров, 55 - углеводов
-                                </p>
-
-                                <div className="assortment_action">
-                                Добавить в корзину
-                                </div>
-                            </div>
-
-                           
-                            
-                            <div className="assortment-img-box">
-                                <span className='dark-effect'></span>
-                                <img src={asrt_img1} alt="" className="assortment-img" />
-                            </div>
-                        </div>
-
-                        <div className="assortment-item">
-                            
-                            <div className="assortment-header">
-                                <p className='assortment-title'>
-                                    Салат "Греческий"
-                                </p>
-                                <p className="main-description">
-                                    300 грамм - 1 порция
-                                </p>
-                                <p className="other-description">
-                                    36 - белков, 11 - жиров, 55 - углеводов
-                                </p>
-
-                                <div className="assortment_action">
-                                Добавить в корзину
-                                </div>
-                            </div>
-
-                           
-                            
-                            <div className="assortment-img-box">
-                                <span className='dark-effect'></span>
-                                <img src={asrt_img1} alt="" className="assortment-img" />
-                            </div>
-                        </div>
-
-                        <div className="assortment-item">
-                            
-                            <div className="assortment-header">
-                                <p className='assortment-title'>
-                                    Салат "Греческий"
-                                </p>
-                                <p className="main-description">
-                                    300 грамм - 1 порция
-                                </p>
-                                <p className="other-description">
-                                    36 - белков, 11 - жиров, 55 - углеводов
-                                </p>
-
-                                <div className="assortment_action">
-                                Добавить в корзину
-                                </div>
-                            </div>
-
-                           
-                            
-                            <div className="assortment-img-box">
-                                <span className='dark-effect'></span>
-                                <img src={asrt_img1} alt="" className="assortment-img" />
-                            </div>
-                        </div>
-
-                        <div className="assortment-item">
-                            
-                            <div className="assortment-header">
-                                <p className='assortment-title'>
-                                    Салат "Греческий"
-                                </p>
-                                <p className="main-description">
-                                    300 грамм - 1 порция
-                                </p>
-                                <p className="other-description">
-                                    36 - белков, 11 - жиров, 55 - углеводов
-                                </p>
-
-                                <div className="assortment_action">
-                                Добавить в корзину
-                                </div>
-                            </div>
-
-                           
-                            
-                            <div className="assortment-img-box">
-                                <span className='dark-effect'></span>
-                                <img src={asrt_img1} alt="" className="assortment-img" />
-                            </div>
-                        </div>
-
-                        <div className="assortment-item">
-                            
-                            <div className="assortment-header">
-                                <p className='assortment-title'>
-                                    Салат "Греческий"
-                                </p>
-                                <p className="main-description">
-                                    300 грамм - 1 порция
-                                </p>
-                                <p className="other-description">
-                                    36 - белков, 11 - жиров, 55 - углеводов
-                                </p>
-
-                                <div className="assortment_action">
-                                Добавить в корзину
-                                </div>
-                            </div>
-
-                           
-                            
-                            <div className="assortment-img-box">
-                                <span className='dark-effect'></span>
-                                <img src={asrt_img1} alt="" className="assortment-img" />
-                            </div>
-                        </div>
-
-                        <div className="assortment-item">
-                            
-                            <div className="assortment-header">
-                                <p className='assortment-title'>
-                                    Салат "Греческий"
-                                </p>
-                                <p className="main-description">
-                                    300 грамм - 1 порция
-                                </p>
-                                <p className="other-description">
-                                    36 - белков, 11 - жиров, 55 - углеводов
-                                </p>
-
-                                <div className="assortment_action">
-                                Добавить в корзину
-                                </div>
-                            </div>
-
-                           
-                            
-                            <div className="assortment-img-box">
-                                <span className='dark-effect'></span>
-                                <img src={asrt_img1} alt="" className="assortment-img" />
-                            </div>
-                        </div>
-
-                        <div className="assortment-item">
-                            
-                            <div className="assortment-header">
-                                <p className='assortment-title'>
-                                    Салат "Греческий"
-                                </p>
-                                <p className="main-description">
-                                    300 грамм - 1 порция
-                                </p>
-                                <p className="other-description">
-                                    36 - белков, 11 - жиров, 55 - углеводов
-                                </p>
-
-                                <div className="assortment_action">
-                                Добавить в корзину
-                                </div>
-                            </div>
-
-                           
-                            
-                            <div className="assortment-img-box">
-                                <span className='dark-effect'></span>
-                                <img src={asrt_img1} alt="" className="assortment-img" />
-                            </div>
-                        </div>
+                        
                     </div>
                     <button className="view-more button-style">
                         Показать ещё
