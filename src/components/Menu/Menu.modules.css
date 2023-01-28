@@ -1,0 +1,73 @@
+.assortment {
+
+}
+
+.assortment h1 {
+    text-align: center;
+}
+
+.assortment_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+
+}
+
+.menu_collection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+
+    /* flex-wrap: wrap; */
+
+    margin-bottom: 90px;
+}
+
+.menu-item {
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 250px;
+    height: 250px;
+
+    background-color: #e9f8fb;
+    border-radius: 16px;
+    padding: 14px;
+}
+
+.menu-item:hover {
+    background-color: var(--main-color);
+   
+}
+
+.menu-item:hover path {
+    fill: #ededed;
+}
+
+.menu-item:hover p {
+    color: #ededed;
+}
+
+.menu-img-box {
+    max-width: 120px;
+    max-height: 120px;
+    margin-bottom: 12px;
+
+    padding: 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-name {
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--main-black);
+}
