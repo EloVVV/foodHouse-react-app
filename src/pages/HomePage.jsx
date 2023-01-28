@@ -5,7 +5,7 @@ import products from '../components/items/products';
 import Menu from '../components/Menu/Menu';
 import Products from '../components/Product/Product';
 
-
+import styles from '../pages/Main_block.modules.css';
 
 
 const HomePage = () => {
